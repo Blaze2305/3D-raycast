@@ -24,9 +24,9 @@ class particle{
     push();
 
     let rays=[];
-    for(let i=0;i<=360;i+=1){
+    for(let i=0;i<=40;i+=1){
       stroke(255,100);
-      rays[i]=new ray(this.pos,degrees(i));
+      rays[i]=new ray(this.pos,radians(i));
       let buffer =Infinity;
       let closest = null;
       for(let j of walls){
@@ -43,8 +43,6 @@ class particle{
       if(closest){
         line(this.pos.x,this.pos.y,closest.x,closest.y);
       }
-
-
     }
 
 
