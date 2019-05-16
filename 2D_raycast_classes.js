@@ -9,6 +9,10 @@ class particle{
     this.pos.set(x,y);
   }
 
+  turn(){
+
+  }
+
   show(){
     push();
     translate(this.pos.x,this.pos.y);
@@ -18,13 +22,10 @@ class particle{
   }
 
   shine(walls){
-
-
-
     push();
-
+    const dists=[];
     let rays=[];
-    for(let i=0;i<=40;i+=1){
+    for(let i=0;i<100;i+=1){
       stroke(255,100);
       rays[i]=new ray(this.pos,radians(i));
       let buffer =Infinity;
@@ -43,9 +44,9 @@ class particle{
       if(closest){
         line(this.pos.x,this.pos.y,closest.x,closest.y);
       }
+      dists[i]=buffer;
     }
-
-
+    return(dists);
     pop();
   }
 }

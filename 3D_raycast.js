@@ -3,13 +3,15 @@ let wall=[];
 let x1,x2,y1,y2;
 let boundary=[];
 let w=[];
-
+let dists=[];
+let view_width;
+let view_height;
 
 function setup(){
 
   createCanvas(800,800);
   part = new particle(300,300);
-  for(let i=0;i<5;i++){
+  for(let i=0;i<2;i++){
     x1=random(0,width/4);
     y1=random(0,height/4);
     x2=random(0,width/4);
@@ -30,6 +32,7 @@ function draw(){
 
 
   background(0);
+  line(width/4,0,width/4,height)
   part.show();
   part.update(mouseX,mouseY);
 
@@ -37,7 +40,18 @@ function draw(){
     stroke(255);
     w.show();
   }
-  part.shine(wa);
+  dists=part.shine(wa);
+  view_width=(3*width/4)/dists.length;
+  for(let p =0;p<dists.length;p++){
+    push();
+    rectMode(CENTER);
+    translate(width/4+p*view_width,0);
+    fill(map(dists[p]%255,0,width/4,255,0));
+    view_height=map(dists[p],0,sqrt(2)*width/4,400,100);
+    stroke(255);
 
+    rect(p*view_width/2,height/2,view_width,view_height);
+    pop();
+  }
 
 }
