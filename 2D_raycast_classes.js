@@ -3,10 +3,20 @@ class particle{
 
   constructor(x,y){
     this.pos=createVector(x,y);
+    this.left=0;
+    this.right=100;
   }
 
   update(x,y){
     this.pos.set(x,y);
+    if(keyIsDown(LEFT_ARROW)){
+      this.left-=1;
+      this.right-=1;
+    }
+    if(keyIsDown(RIGHT_ARROW)){
+      this.right+=1;
+      this.left+=1;
+    }
   }
 
   turn(){
@@ -25,7 +35,7 @@ class particle{
     push();
     const dists=[];
     let rays=[];
-    for(let i=0;i<100;i+=1){
+    for(let i=this.left;i<this.right;i+=1){
       stroke(255,100);
       rays[i]=new ray(this.pos,radians(i));
       let buffer =Infinity;

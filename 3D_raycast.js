@@ -10,7 +10,7 @@ let view_height;
 function setup(){
 
   createCanvas(800,800);
-  part = new particle(300,300);
+  part = new particle(20,20);
   for(let i=0;i<2;i++){
     x1=random(0,width/4);
     y1=random(0,height/4);
@@ -34,7 +34,7 @@ function draw(){
   background(0);
   line(width/4,0,width/4,height)
   part.show();
-  part.update(mouseX,mouseY);
+//  part.update(20,20);
 
   for(w of wa ){
     stroke(255);
