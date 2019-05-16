@@ -44,15 +44,16 @@ function draw(){
   dists=part.shine(wa);
 
   view_width=(3*width/4)/dists.length;
+
   for(let p =0;p<dists.length;p++){
     push();
     rectMode(CENTER);
     translate(width/4+p*view_width,0);
-    fill(map(dists[p],0,Math.max(dists),255,0));
+    fill(map(dists[p],0,Math.max(...dists),255,0));
     view_height=map(dists[p],0,sqrt(2)*width/4,400,100);
-    stroke(255);
-
-    rect(p*view_width/2,height/2,view_width,view_height);
+    //stroke(255);
+    noStroke();
+    rect(p*view_width/2,height/2,view_width+3,view_height);
     pop();
   }
 

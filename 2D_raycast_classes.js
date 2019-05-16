@@ -16,12 +16,12 @@ class particle{
 
     // 87=w, 65=a, 83=s , 68 =d : event keycodes http://keycode.info/;     https://p5js.org/reference/#/p5/keyCode
     if(keyIsDown(87)){
-      if(this.pos.y>0){
+      if(this.pos.y>5){
         this.pos.y-=2;
       }
     }
     if(keyIsDown(65)){
-      if(this.pos.x>0){
+      if(this.pos.x>5){
         this.pos.x-=2;
       }
     }
@@ -81,10 +81,11 @@ class particle{
           }
         }
       }
+
       if(closest){
         line(this.pos.x,this.pos.y,closest.x,closest.y);
       }
-      dists.push(buffer);
+      dists.push(buffer);  // do not use dists[i]=buffer; cuz if i changes , then dists will not be properly set for -ve index
     }
     return(dists);
     pop();
