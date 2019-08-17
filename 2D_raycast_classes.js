@@ -4,7 +4,7 @@ class particle{
   constructor(x,y){
     this.pos=createVector(x,y);
     this.left=0;
-    this.right=90;
+    this.right=70;
     this.b=0;
     this.x1=0;
   }
@@ -12,41 +12,100 @@ class particle{
   update(x,y){
 
 
-
-
-    // 87=w, 65=a, 83=s , 68 =d : event keycodes http://keycode.info/;     https://p5js.org/reference/#/p5/keyCode
-    if(keyIsDown(87)){
-      if(this.pos.y>5){
-        this.pos.y-=2;
-      }
-    }
-    if(keyIsDown(65)){
-      if(this.pos.x>5){
-        this.pos.x-=2;
-      }
-    }
-    if(keyIsDown(83)){
-      if(this.pos.y<height/4-5){
-        this.pos.y+=2;
-      }
-    }
-    if(keyIsDown(68)){
-      if(this.pos.x<width/4-5){
-        this.pos.x+=2;
-      }
-    }
     if(keyIsDown(LEFT_ARROW)){
       // if(this.left>0){
         this.left-=1;
         this.right-=1;
       //}
     }
+
+
     if(keyIsDown(RIGHT_ARROW)){
     //  if(this.right<360){
         this.right+=1;
         this.left+=1;
       }
     //}
+
+    // Below is for actually moving up down left and right
+    // 87=w, 65=a, 83=s , 68 =d : event keycodes http://keycode.info/;     https://p5js.org/reference/#/p5/keyCode
+
+
+
+    if(keyIsDown(87)){  //W
+      if(this.pos.y>5 && this.pos.y<height/4-5 && this.pos.x>5 && this.pos.x<width/4-10){
+        let mid=(this.right+this.left)/2
+        let px=cos(mid*PI/180)
+        let py=sin(mid*PI/180)
+        let a=this.pos.x+px
+        let b=this.pos.y+py
+       if(a>5 && a<height/4-5 && b>5 && b<width/4-10){
+         this.pos.x+=px
+         this.pos.y+=py
+
+       }
+
+
+        // this.pos.y-=2;
+      }
+    }
+
+
+
+    if(keyIsDown(65)){  //A
+      if(this.pos.y>5 && this.pos.y<height/4-5 && this.pos.x>5 && this.pos.x<width/4-10){
+        let mid=(this.right+this.left)/2
+        let px=cos(mid*PI/180-PI/2)
+        let py=sin(mid*PI/180-PI/2)
+        let a=this.pos.x+px
+        let b=this.pos.y+py
+      
+        if(a>5 && a<height/4-5 && b>5 && b<width/4-10){
+          this.pos.x+=px
+          this.pos.y+=py
+ 
+        }
+        // this.pos.x-=2;
+      }
+    }
+
+
+    if(keyIsDown(83)){   //S
+      if(this.pos.y>5 && this.pos.y<height/4-5 && this.pos.x>5 && this.pos.x<width/4-10){
+        let mid=(this.right+this.left)/2
+        let px=cos(mid*PI/180)
+        let py=sin(mid*PI/180)
+        let a=this.pos.x-px
+        let b=this.pos.y-py
+        if(a>5 && a<height/4-5 && b>5 && b<width/4-10){
+          this.pos.x-=px
+          this.pos.y-=py
+ 
+        }
+
+        // this.pos.y+=2;
+      }
+    }
+
+
+
+    if(keyIsDown(68)){ //D
+      if(this.pos.y>5 && this.pos.y<height/4-5 && this.pos.x>5 && this.pos.x<width/4-10){
+        let mid=(this.right+this.left)/2
+        let px=cos(mid*PI/180+PI/2)
+        let py=sin(mid*PI/180+PI/2)
+        
+        let a=this.pos.x+px
+        let b=this.pos.y+py
+        if(a>5 && a<height/4-5 && b>5 && b<width/4-10){
+          this.pos.x+=px
+          this.pos.y+=py
+ 
+        }
+        // this.pos.x+=2;
+      }
+    }
+
   }
 
   turn(){
